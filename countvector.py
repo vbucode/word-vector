@@ -13,15 +13,15 @@ def vector(getlist, tf = 1):
         w = insth.load()
         nlist.append(w)
     if tf == 1:
-        for j in nlist:
-            for k in j:
-                for i, x in enumerate(instv):
+        for i in range(len(nlist)):
+            klist.append([0]*len(instv))
+        for k in instv:
+            for i in nlist:
+                for j in i:
                     c = 0
-                    if x != k:
-                        klist.append(0)
-                    else:
+                    if k == j:
                         c += 1
-                        klist.append(c / len(instv))
+                        klist[nlist.index(i)][instv.index(k)] = c / len(instv)
     else:
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
