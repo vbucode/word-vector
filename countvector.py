@@ -2,7 +2,7 @@
 
 from words import Words
 
-def vector(getlist, tf = 0):
+def vector(getlist, tf = 1):
     klist = []
     nlist = []
     varstring = " ".join(getlist)
@@ -13,11 +13,11 @@ def vector(getlist, tf = 0):
         w = insth.load()
         nlist.append(w)
     if tf == 1:
-        for k in instv:
-            for i in nlist:
-                for j in i:
+        for j in nlist:
+            for k in j:
+                for i, x in enumerate(instv):
                     c = 0
-                    if k != j:
+                    if x != k:
                         klist.append(0)
                     else:
                         c += 1
