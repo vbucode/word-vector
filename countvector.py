@@ -21,7 +21,7 @@ def vector(getlist, tf = 1):
                         klist.append(0)
                     else:
                         c += 1
-                        klist.append([c / len(instv)])
+                        klist.append(c / len(instv))
     else:
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
