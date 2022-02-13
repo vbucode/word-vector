@@ -1,2 +1,2 @@
 # count-vector
-this is module to make n-gram on vector
+module to make vector
