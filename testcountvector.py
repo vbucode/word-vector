@@ -2,7 +2,7 @@ from sentences import Sentences
 from words import Words
 from punctuation import Punctuation
 import corpus
-import countvector
+import vector
 
 llist = []
 rlist = []
