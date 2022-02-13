@@ -2,58 +2,21 @@
 
 from words import Words
 
-llist = []
-rlist = []
-with open("data.txt", "r") as file:
-    for line in file:
-        if not line:
-            continue
-        else:
-            left, right, *res = line.split(":")
-            llist.append(left)
-            rlist.append(right)
-            varstring = " ".join(llist)
-
-def bow():
-    instbow = Words(varstring)
-    instb = instbow.load()
-    return instb
-def vector():
+def vector(getlist):
     klist = []
-    vlist = []
     nlist = []
+    varstring = " ".join(str(x) for x in getlist)
     instvect = Words(varstring)
     instv = instvect.load()
-    for i in llist:
-        insth = Words(i)
-        w = insth.load()
-        nlist.append(w)
-    for i in range(len(nlist)):
-        klist.append([0]*len(instv))
+    for i in range(len(getlist)):
+        nlist.append([0]*len(instv))    
     for k in instv:
         for i in nlist:
             for j in i:
                 if k == j:
                     klist[nlist.index(i)][instv.index(k)] = 1
     return klist
-
-def reply():
-    return rlist
-
-from words import Words
-import vector
-import json
-
-slist = vector.reply()
-
-def getdata(xarg):
-    count = 0
-    count2 = 0
-    answ = ""
-    nlist = []
-    listvect = []
-    listvect2 = []
-    rlist = []
+"""
     word = Words(xarg)
     w = word.load()
     for k in w:
@@ -84,5 +47,5 @@ def getdata(xarg):
                 m = rlist.index(i)
                 v = listvect2[m]
                 answ = slist[v]
-    
-    return answ
+ 
+"""
