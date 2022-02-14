@@ -23,12 +23,12 @@ def vector(getlist, tf = 1):
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
         for k in instv:
+            c = instv.count(k)
             for i in nlist:
                 for j in i:
-                    c = 0
                     if k == j:
-                        c += 1
                         klist[nlist.index(i)][instv.index(k)] = c / len(instv)
+                        c = 0
     else:
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
