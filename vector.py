@@ -2,7 +2,14 @@
 
 from words import Words
 
+
+def bow():
+    global instv
+    instb = instv
+    return instb
+
 def vector(getlist, tf = 1):
+    global instv
     klist = []
     nlist = []
     varstring = " ".join(getlist)
