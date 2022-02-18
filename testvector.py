@@ -27,5 +27,5 @@ for i in nlist:
     stopfiltered = [str(x) for x in i if x not in stop]
     ylist.append(stopfiltered)
 """
-vect = vector.vector(llist)
+vect = vector.vector(llist, tf = 1)
 print(vect)
