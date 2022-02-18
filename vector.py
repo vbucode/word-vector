@@ -2,6 +2,10 @@
 
 from words import Words
 
+def linetokenize():
+    global nlist
+    instnlist = nlist
+    return instnlist
 
 def bow():
     global instv
@@ -10,8 +14,10 @@ def bow():
 
 def vector(getlist, tf = 1):
     global instv
+    global nlist
     klist = []
     nlist = []
+    c = 0
     varstring = " ".join(getlist)
     instvect = Words(varstring)
     instv = instvect.load()
