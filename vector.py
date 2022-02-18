@@ -1,5 +1,5 @@
 # module to count vector
-
+import math
 from words import Words
 
 def linetokenize():
@@ -12,7 +12,7 @@ def bow():
     instb = instv
     return instb
 
-def vector(getlist, tf = 1):
+def vector(getlist, tfidf = 0):
     global instv
     global nlist
     klist = []
@@ -25,7 +25,7 @@ def vector(getlist, tf = 1):
         insth = Words(i)
         w = insth.load()
         nlist.append(w)
-    if tf == 1:
+    if tfidf == "tf":
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
         for k in instv:
@@ -35,7 +35,30 @@ def vector(getlist, tf = 1):
                     if k == j:
                         klist[nlist.index(i)][instv.index(k)] = c / len(instv)
                         c = 0
-    else:
+
+    elif tfidf == "idf":
+        for i in range(len(nlist)):
+            klist.append([0]*len(instv))
+        for k in instv:
+            for i in nlist:
+                for j in i:
+                    if k == j:
+                        klist[nlist.index(i)][instv.index(k)] = math.log10(len(nlist)/sum([1.0 for i in nlist if k in i]))
+
+    elif tfidf == "tfidf":
+        for i in range(len(nlist)):
+            klist.append([0]*len(instv))
+        for k in instv:
+            c = instv.count(k)
+            for i in nlist:
+                for j in i:
+                    if k == j:
+                        vartf = c / len(instv)
+                        varidf = math.log10(len(nlist)/sum([1.0 for i in nlist if k in i]))
+                        klist[nlist.index(i)][instv.index(k)] = vartf * varidf
+                        c = 0
+        
+    elif tfidf == 0:
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
         for k in instv:
@@ -43,4 +66,5 @@ def vector(getlist, tf = 1):
                 for j in i:
                     if k == j:
                         klist[nlist.index(i)][instv.index(k)] = 1
+
     return klist
