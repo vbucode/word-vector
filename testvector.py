@@ -33,5 +33,10 @@ print("vectors words\n", vectwords)
 for i in vect:
     for j in i:
         if j == max(i):
-            print("out: ", j)
+            try:
+                print("out: ", vectwords[vect.index(i)][i.index(j)], j)
+            except IndexError:
+                pass
+        else:
+            continue
 
