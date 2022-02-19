@@ -10,7 +10,7 @@ outdict = {}
 
 # to awoid some problems with not good writting text
 # для избежания возможной ошибки при неправильном форматировании данных
-with open("fooddeliverydatabaseclean.txt", "r") as file:
+with open("data.txt", "r") as file:
     for line in file:
         if not line:
             continue
@@ -21,16 +21,15 @@ with open("fooddeliverydatabaseclean.txt", "r") as file:
 # tokenise to sentences(sometime need make tokenize sentences only dot)
 s = Sentences(varstring, dot = 1)
 sl = s.load()
-#print("Sentences\n", sl)
+print("Sentences\n", sl)
 
 # vector with tf-idf
 vect = vector.vector(sl, tfidf = "tfidf")
 
 # vectors words
 vectwords = vector.linetokenize()
-#print("vectors words\n", vectwords)
+print("vectors words\n", vectwords)
 
-# max
 for i in vect:
     for j in i:
         if j == max(i):
