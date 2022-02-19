@@ -44,4 +44,5 @@ for i in vect:
                 outdict[vectwords[vect.index(i)][i.index(j)]] = j
             except IndexError:
                 pass
-print(sorted(outdict.items()))
+sortlist = list(outdict.items())
+print(sortlist)
