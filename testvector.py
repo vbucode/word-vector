@@ -16,7 +16,7 @@ with open("data.txt", "r") as file:
             continue
         else:
             xlist.append(line)
-        varstring = " . ".join(xlist)
+        varstring = " ".join(xlist)
 
 # tokenise to sentences(sometime need make tokenize sentences only dot)
 s = Sentences(varstring, dot = 1)
