@@ -1,4 +1,4 @@
-# vector
+# word vector
 
 requrements: use tokenize from my repository
 
