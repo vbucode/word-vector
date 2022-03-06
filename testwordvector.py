@@ -1,5 +1,4 @@
 from sentences import Sentences
-import corpus
 import wordvector
 
 xlist = []
