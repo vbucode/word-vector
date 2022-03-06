@@ -21,8 +21,8 @@ with open("chatbotdatabase.txt", "r") as file:
             xlist.append(left)
     #varstring = " ".join(xlist)
 """
-# tokenise to sentences(sometime need make tokenize sentences only dot)
-s = Sentences(varstring, dot = 1)
+# tokenise to sentences(sometime need make tokenize sentences only dot give argument dot = 1)
+s = Sentences(varstring)
 sl = s.load()
 
 # vector with tf-idf
