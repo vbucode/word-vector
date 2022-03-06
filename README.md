@@ -2,4 +2,4 @@
 
 module to make vector zero one, tf, idf, tf-idf
 
-requirements: module sentences.py from tokenize
+requirements: module tokenize, sentences.py from tokenize repository
