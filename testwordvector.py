@@ -1,7 +1,4 @@
 from sentences import Sentences
-from words import Words
-from punctuation import Punctuation
-from lemmatize import Lemmatize
 import corpus
 import wordvector
 
