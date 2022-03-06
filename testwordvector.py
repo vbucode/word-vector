@@ -11,16 +11,7 @@ with open("data.txt", "r") as file:
         else:
             xlist.append(line)
         varstring = " ".join(xlist)
-"""
-with open("chatbotdatabase.txt", "r") as file:
-    for line in file:
-        if not line:
-            continue
-        else:
-            left, right, *res = line.split(":")
-            xlist.append(left)
-    #varstring = " ".join(xlist)
-"""
+
 # tokenise to sentences(sometime need make tokenize sentences only dot give argument dot = 1)
 s = Sentences(varstring)
 sl = s.load()
