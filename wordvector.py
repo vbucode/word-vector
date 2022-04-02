@@ -1,4 +1,3 @@
-# module to count vector
 import math
 from words import Words
 
