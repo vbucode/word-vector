@@ -1,5 +1,5 @@
 from sentences import Sentences
-import wordvector
+from wordvector import WordVector
 
 xlist = []
 outdict = {}
@@ -17,10 +17,11 @@ s = Sentences(varstring)
 sl = s.load()
 
 # vector with tf-idf
-vect = wordvector.vector(xlist, tfidf = "tfidf")
+ivect = WordVector(xlist, tfidf = "tfidf")
+vect = ivect.load()
 
 # vectors words
-vectwords = wordvector.linetokenize()
+vectwords = ivect.linetokenize()
 #print("vectors words\n", vectwords)
 
 for i in vect:
