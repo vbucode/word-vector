@@ -1,19 +1,16 @@
 from sentences import Sentences
 from wordvector import WordVector
 
-xlist = []
 outdict = {}
 
 with open("data.txt", "r") as file:
-    for line in file:
-        if not line:
-            continue
-        else:
-            xlist.append(line)
-        varstring = " ".join(xlist)
+    f = file.read()
+
+instsent = Sentences(f)
+sent = instsent.load()
 
 # vector with tf-idf
-ivect = WordVector(xlist, tfidf = "tfidf")
+ivect = WordVector(sent, tfidf = "tfidf")
 vect = ivect.load()
 
 # vectors words
