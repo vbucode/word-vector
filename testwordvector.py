@@ -12,10 +12,6 @@ with open("data.txt", "r") as file:
             xlist.append(line)
         varstring = " ".join(xlist)
 
-# tokenise to sentences(sometime need make tokenize sentences only dot give argument dot = 1)
-s = Sentences(varstring)
-sl = s.load()
-
 # vector with tf-idf
 ivect = WordVector(xlist, tfidf = "tfidf")
 vect = ivect.load()
