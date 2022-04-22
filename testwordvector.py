@@ -1,16 +1,31 @@
 from sentences import Sentences
+from words import Words
 from wordvector import WordVector
+import corpus
 
 outdict = {}
+xlist = []
 
 with open("data.txt", "r") as file:
     f = file.read()
 
+# tokenize to sentences
 instsent = Sentences(f)
 sent = instsent.load()
 
+# load stop words
+stop = corpus.stopwords("russian")
+
+# tokenize sentences before remove stopwords
+for i in sent:
+    w = Words(i)
+    wl = w.load()
+    stopfiltered = [str(x) for x in wl if x not in stop]
+    varstring = " ".join(stopfiltered)
+    xlist.append(varstring)
+
 # vector with tf-idf
-ivect = WordVector(sent, tfidf = "tfidf")
+ivect = WordVector(xlist, tfidf = "tfidf")
 vect = ivect.load()
 
 # vectors words
