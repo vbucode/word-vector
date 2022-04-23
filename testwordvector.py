@@ -34,6 +34,14 @@ vectbow = ivect.bow()
 # list with lists of tokenized sentences
 vectsent = ivect.linetokenize()
 
+"""
+inp = input("search word: ")
+for i in vectsent:
+    for j, x in enumerate(vect[vectsent.index(i)]):
+        if inp == vectbow[j] and x != 0:
+            print("{}:{}".format(vectbow[j], x))
+"""
+
 for i in vectsent:
     for j, x in enumerate(vect[vectsent.index(i)]):
         if x != 0:
