@@ -3,8 +3,6 @@ from words import Words
 from wordvector import WordVector
 import corpus
 
-outdict = {}
-wsv = {}
 xlist = []
 ylist = []
 
@@ -35,6 +33,7 @@ vectbow = ivect.bow()
 
 # list with lists of tokenized sentences
 vectsent = ivect.linetokenize()
+
 for i in vectsent:
     for j, x in enumerate(vect[vectsent.index(i)]):
         if x != 0:
