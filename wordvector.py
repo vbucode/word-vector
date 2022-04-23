@@ -39,7 +39,7 @@ class WordVector:
                     varidf = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
                     klist[nlist.index(i)][instv.index(j)] = vartf * varidf
 
-        elif self.tfidf == 0:
+        elif self.tfidf == "01":
             for i in nlist:
                 for j in i:
                     klist[nlist.index(i)][instv.index(j)] = 1
