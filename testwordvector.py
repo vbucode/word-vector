@@ -4,7 +4,9 @@ from wordvector import WordVector
 import corpus
 
 outdict = {}
+wsv = {}
 xlist = []
+ylist = []
 
 with open("data.txt", "r") as file:
     f = file.read()
@@ -28,22 +30,14 @@ for i in sent:
 ivect = WordVector(xlist, tfidf = "tfidf")
 vect = ivect.load()
 
-# vectors words
-vectwords = ivect.linetokenize()
-#print("vectors words\n", vectwords)
+# bag of words
+vectbow = ivect.bow()
 
-for i in vect:
-    for j in i:
-        if j != 0:
-            try:
-                outdict[vectwords[vect.index(i)][i.index(j)]] = j
-            except IndexError:
-                pass
-sv = sorted(outdict.values())
-wsv = {}
-for i in sv:
-    for j in outdict.keys():
-        if outdict[j] == i:
-            wsv[j] = outdict[j]
-            break
-print("tf-idf\n", wsv)
+# list with lists of tokenized sentences
+vectsent = ivect.linetokenize()
+for i in vectsent:
+    for j, x in enumerate(vect[vectsent.index(i)]):
+        if x != 0:
+            ylist.append((vectbow[j], x))
+
+print("tf-idf\n", ylist)
