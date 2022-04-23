@@ -1,3 +1,4 @@
+import json
 from sentences import Sentences
 from words import Words
 from wordvector import WordVector
@@ -5,6 +6,7 @@ import corpus
 
 xlist = []
 ylist = []
+dict = {}
 
 with open("data.txt", "r") as file:
     f = file.read()
@@ -27,20 +29,30 @@ for i in sent:
 # vector with tf-idf
 ivect = WordVector(xlist, tfidf = "tfidf")
 vect = ivect.load()
+dict["vector"]= vect
 
 # bag of words
 vectbow = ivect.bow()
+dict["bow"] = vectbow
 
 # list with lists of tokenized sentences
-vectsent = ivect.linetokenize()
+vectsent = ivect.senttokenize()
+dict["sentok"] = vectsent
 
-"""
+json.dump(dict, open("data.json", "w"))
+
+d = json.load(open("data.json"))
+print(d)
+
+vect2 = d["vector"]
+vectbow2 = d["bow"]
+vectsent2 = d["sentok"]
+
 inp = input("search word: ")
-for i in vectsent:
-    for j, x in enumerate(vect[vectsent.index(i)]):
-        if inp == vectbow[j] and x != 0:
-            print("{}:{}".format(vectbow[j], x))
-"""
+for i in vectsent2:
+    for j, x in enumerate(vect2[vectsent2.index(i)]):
+        if inp == vectbow2[j] and x != 0:
+            print("{}:{}".format(vectbow2[j], x))
 
 for i in vectsent:
     for j, x in enumerate(vect[vectsent.index(i)]):

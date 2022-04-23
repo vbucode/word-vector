@@ -45,7 +45,7 @@ class WordVector:
                     klist[nlist.index(i)][instv.index(j)] = 1
         return klist
 
-    def linetokenize(self):
+    def senttokenize(self):
         global nlist
         instnlist = nlist
         return instnlist
