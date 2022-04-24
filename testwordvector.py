@@ -3,7 +3,6 @@ from sentences import Sentences
 from words import Words
 from wordvector import WordVector
 
-wlist = []
 xlist = []
 ylist = []
 dict = {}
@@ -15,14 +14,8 @@ with open("data.txt", "r") as file:
 instsent = Sentences(f)
 sent = instsent.load()
 
-# tokenize sentences to words
-for i in sent:
-    instwords = Words(i)
-    iwords = instwords.load()
-    wlist.append(iwords)
-
 # vector with tf-idf
-ivect = WordVector(wlist, tfidf = "tf-idf")
+ivect = WordVector(sent, tfidf = "tf-idf")
 vect = ivect.load()
 dict["vector"] = vect
 
