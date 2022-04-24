@@ -7,6 +7,7 @@ class WordVector:
     def load(self):
         global instv
         global nlist
+        countw = 0
         klist = []
         nlist = []
         instv = []
@@ -18,7 +19,6 @@ class WordVector:
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
         if self.tfidf == "tf":
-            countw = 0
             for i in nlist:
                 for j in i:
                     countw += 1
@@ -26,14 +26,12 @@ class WordVector:
                     klist[nlist.index(i)][countw - 1] = c / len(instv)
 
         elif self.tfidf == "idf":
-            countw = 0
             for i in nlist:
                 for j in i:
                     countw += 1
                     klist[nlist.index(i)][countw - 1] = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
 
         elif self.tfidf == "tf-idf":
-            countw = 0
             for i in nlist:
                 for j in i:
                     countw += 1
@@ -43,7 +41,6 @@ class WordVector:
                     klist[nlist.index(i)][countw - 1] = vartf * varidf
 
         elif self.tfidf == "01":
-            countw = 0
             for i in nlist:
                 for j in i:
                     countw += 1
