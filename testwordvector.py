@@ -2,8 +2,8 @@ import json
 from sentences import Sentences
 from words import Words
 from wordvector import WordVector
-import corpus
 
+wlist = []
 xlist = []
 ylist = []
 dict = {}
@@ -15,21 +15,16 @@ with open("data.txt", "r") as file:
 instsent = Sentences(f)
 sent = instsent.load()
 
-# load stop words
-stop = corpus.stopwords("russian")
-
-# tokenize sentences before remove stopwords
+# tokenize sentences to words
 for i in sent:
-    w = Words(i)
-    wl = w.load()
-    stopfiltered = [str(x) for x in wl if x not in stop]
-    varstring = " ".join(stopfiltered)
-    xlist.append(varstring)
+    instwords = Words(i)
+    iwords = instwords.load()
+    wlist.append(iwords)
 
 # vector with tf-idf
-ivect = WordVector(xlist, tfidf = "tfidf")
+ivect = WordVector(wlist, tfidf = "tf-idf")
 vect = ivect.load()
-dict["vector"]= vect
+dict["vector"] = vect
 
 # bag of words
 vectbow = ivect.bow()
@@ -39,23 +34,29 @@ dict["bow"] = vectbow
 vectsent = ivect.senttokenize()
 dict["sentok"] = vectsent
 
+# dump json
 json.dump(dict, open("data.json", "w"))
 
+# load json
 d = json.load(open("data.json"))
-print(d)
+print("load json: \n", d)
 
 vect2 = d["vector"]
 vectbow2 = d["bow"]
 vectsent2 = d["sentok"]
 
-inp = input("search word: ")
+# search tf-idf of word
+inp = input("word: ")
 for i in vectsent2:
-    for j, x in enumerate(vect2[vectsent2.index(i)]):
-        if inp == vectbow2[j] and x != 0:
-            print("{}:{}".format(vectbow2[j], x))
+    countw = 0
+    for j in i:
+        countw += 1
+        if j == inp:
+            print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
 
-for i in vectsent:
-    for j, x in enumerate(vect[vectsent.index(i)]):
+# tf-idf of words without 0
+for i in sent:
+    for j, x in enumerate(vect[sent.index(i)]):
         if x != 0:
             ylist.append((vectbow[j], x))
 

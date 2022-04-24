@@ -1,8 +1,7 @@
 import math
-from words import Words
 
 class WordVector:
-    def __init__(self, getlist, tfidf = 0):
+    def __init__(self, getlist, tfidf = "01"):
         self.getlist = getlist
         self.tfidf = tfidf
     def load(self):
@@ -10,39 +9,45 @@ class WordVector:
         global nlist
         klist = []
         nlist = []
-        c = 0
-        varstring = " ".join(self.getlist)
-        instvect = Words(varstring)
-        instv = instvect.load()
+        instv = []
         for i in self.getlist:
-            insth = Words(i)
-            w = insth.load()
-            nlist.append(w)
+            nlist.append(i)
+        for i in nlist:
+            for j in i:
+                instv.append(j)
         for i in range(len(nlist)):
             klist.append([0]*len(instv))
         if self.tfidf == "tf":
+            countw = 0
             for i in nlist:
                 for j in i:
+                    countw += 1
                     c = instv.count(j)
-                    klist[nlist.index(i)][instv.index(j)] = c / len(instv)
+                    klist[nlist.index(i)][countw - 1] = c / len(instv)
 
         elif self.tfidf == "idf":
+            countw = 0
             for i in nlist:
                 for j in i:
-                    klist[nlist.index(i)][instv.index(j)] = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
+                    countw += 1
+                    klist[nlist.index(i)][countw - 1] = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
 
-        elif self.tfidf == "tfidf":
+        elif self.tfidf == "tf-idf":
+            countw = 0
             for i in nlist:
                 for j in i:
+                    countw += 1
                     c = instv.count(j)
                     vartf = c / len(instv)
                     varidf = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
-                    klist[nlist.index(i)][instv.index(j)] = vartf * varidf
+                    klist[nlist.index(i)][countw - 1] = vartf * varidf
 
         elif self.tfidf == "01":
+            countw = 0
             for i in nlist:
                 for j in i:
-                    klist[nlist.index(i)][instv.index(j)] = 1
+                    countw += 1
+                    klist[nlist.index(i)][countw - 1] = 1
         return klist
 
     def senttokenize(self):
