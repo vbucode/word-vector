@@ -11,6 +11,7 @@ class WordVector:
         klist = []
         nlist = []
         c = 0
+        countw = 0
         varstring = " ".join(self.getlist)
         instvect = Words(varstring)
         instv = instvect.load()
@@ -31,7 +32,7 @@ class WordVector:
                 for j in i:
                     klist[nlist.index(i)][instv.index(j)] = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
 
-        elif self.tfidf == "tf-idf":
+        elif self.tfidf == "tfidf":
             for i in nlist:
                 for j in i:
                     c = instv.count(j)
@@ -42,7 +43,9 @@ class WordVector:
         elif self.tfidf == "01":
             for i in nlist:
                 for j in i:
-                    klist[nlist.index(i)][instv.index(j)] = 1
+                    countw += 1
+                    #klist[nlist.index(i)][instv.index(j)] = 1
+                    klist[nlist.index(i)][countw -1] = 1
 
         return klist
 
