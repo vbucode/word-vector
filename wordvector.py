@@ -24,28 +24,30 @@ class WordVector:
         if self.tfidf == "tf":
             for i in nlist:
                 for j in i:
+                    countw += 1
                     c = instv.count(j)
-                    klist[nlist.index(i)][instv.index(j)] = c / len(instv)
+                    klist[nlist.index(i)][countw - 1] = c / len(instv)
 
         elif self.tfidf == "idf":
             for i in nlist:
                 for j in i:
-                    klist[nlist.index(i)][instv.index(j)] = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
+                    countw += 1
+                    klist[nlist.index(i)][countw -1] = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
 
-        elif self.tfidf == "tfidf":
+        elif self.tfidf == "tf-idf":
             for i in nlist:
                 for j in i:
+                    countw += 1
                     c = instv.count(j)
                     vartf = c / len(instv)
                     varidf = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
-                    klist[nlist.index(i)][instv.index(j)] = vartf * varidf
+                    klist[nlist.index(i)][countw -1] = vartf * varidf
 
         elif self.tfidf == "01":
             for i in nlist:
                 for j in i:
                     countw += 1
-                    #klist[nlist.index(i)][instv.index(j)] = 1
-                    klist[nlist.index(i)][countw -1] = 1
+                    klist[nlist.index(i)][countw - 1] = 1
 
         return klist
 
