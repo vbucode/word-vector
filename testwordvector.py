@@ -3,6 +3,7 @@ from sentences import Sentences
 from words import Words
 from wordvector import WordVector
 
+dlist = []
 xlist = []
 ylist = []
 dict = {}
@@ -14,18 +15,22 @@ with open("data.txt", "r") as file:
 instsent = Sentences(f)
 sent = instsent.load()
 
+# tokenize sentences to words
+for i in sent:
+    w = Words(i)
+    wl = w.load()
+    dlist.append(wl)
+
 # vector with tf-idf
-ivect = WordVector(sent, tfidf = "tf-idf")
+ivect = WordVector(dlist, tfidf = "tf-idf")
 vect = ivect.load()
-dict["vector"] = vect
 
 # bag of words
 vectbow = ivect.bow()
-dict["bow"] = vectbow
 
-# list with lists of tokenized sentences
-vectsent = ivect.senttokenize()
-dict["sentok"] = vectsent
+dict["vector"] = vect
+dict["bow"] = vectbow
+dict["sentok"] = dlist
 
 # dump json
 json.dump(dict, open("data.json", "w"))
@@ -48,9 +53,9 @@ for i in vectsent2:
             print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
 
 # tf-idf of words without 0
-for i in sent:
-    for j, x in enumerate(vect[sent.index(i)]):
-        if x != 0:
-            ylist.append((vectbow[j], x))
+for i in dlist:
+    for j in i:
+        if vect[dlist.index(i)][i.index(j)] != 0:
+            ylist.append((j, vect[dlist.index(i)][i.index(j)]))
 
 print("tf-idf\n", ylist)
