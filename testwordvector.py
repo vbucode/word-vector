@@ -46,15 +46,6 @@ vect2 = d["vector"]
 vectbow2 = d["bow"]
 vectsent2 = d["sentok"]
 
-# search tf-idf of word
-inp = input("word: ")
-countw = 0
-for i in vectsent2:
-    for j in i:
-        countw += 1
-        if j == inp:
-            print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
-
 # tf-idf of words without 0
 count = 0
 for i in dlist:
@@ -64,3 +55,17 @@ for i in dlist:
             ylist.append((j, vect[dlist.index(i)][count - 1]))
 
 print("tf-idf\n", ylist)
+
+
+def main():
+    # search tf-idf of word
+    inp = input("word: ")
+    countw = 0
+    for i in vectsent2:
+        for j in i:
+            countw += 1
+            if j == inp:
+                print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
+
+while True:
+    main()
