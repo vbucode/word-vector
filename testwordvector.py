@@ -61,11 +61,13 @@ def main():
     # search tf-idf of word
     inp = input("word: ")
     countw = 0
+    flag = 0
     for i in vectsent2:
         for j in i:
             countw += 1
-            if j == inp:
+            if j == inp and flag == 0:
                 print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
+                flag = 1
 
 while True:
     main()
