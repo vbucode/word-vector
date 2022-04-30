@@ -68,6 +68,8 @@ def main():
             if j == inp and flag == 0:
                 print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
                 flag = 1
+            if countw * len(vect2) == len(vectbow2):
+                print("not in documents")
 
 while True:
     main()
