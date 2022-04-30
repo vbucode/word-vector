@@ -7,6 +7,7 @@ dlist = []
 xlist = []
 ylist = []
 dict = {}
+vectbow = []
 
 with open("data.txt", "r") as file:
     f = file.read()
@@ -21,12 +22,14 @@ for i in sent:
     wl = w.load()
     dlist.append(wl)
 
+# bag of words
+for i in dlist:
+    for j in i:
+        vectbow.append(j)
+
 # vector with tf-idf
 ivect = WordVector(dlist, tfidf = "tf-idf")
 vect = ivect.load()
-
-# bag of words
-vectbow = ivect.bow()
 
 dict["vector"] = vect
 dict["bow"] = vectbow
@@ -45,17 +48,19 @@ vectsent2 = d["sentok"]
 
 # search tf-idf of word
 inp = input("word: ")
+countw = 0
 for i in vectsent2:
-    countw = 0
     for j in i:
         countw += 1
         if j == inp:
             print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
 
 # tf-idf of words without 0
+count = 0
 for i in dlist:
     for j in i:
-        if vect[dlist.index(i)][i.index(j)] != 0:
-            ylist.append((j, vect[dlist.index(i)][i.index(j)]))
+        count += 1
+        if vect[dlist.index(i)][count - 1] != 0:
+            ylist.append((j, vect[dlist.index(i)][count - 1]))
 
 print("tf-idf\n", ylist)

@@ -5,7 +5,6 @@ class WordVector:
         self.getlist = getlist
         self.tfidf = tfidf
     def load(self):
-        global instv
         klist = []
         instv = []
         c = 0
@@ -42,9 +41,4 @@ class WordVector:
                 for j in i:
                     countw += 1
                     klist[self.getlist.index(i)][countw - 1] = 1
-
         return klist
-
-    def bow(self):
-        global instv
-        return instv
