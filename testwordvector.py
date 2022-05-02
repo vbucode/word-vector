@@ -6,7 +6,7 @@ from wordvector import WordVector
 dlist = []
 xlist = []
 ylist = []
-dict = {}
+xdict = {}
 vectbow = []
 
 with open("data.txt", "r") as file:
@@ -31,12 +31,12 @@ for i in dlist:
 ivect = WordVector(dlist, tfidf = "tf-idf")
 vect = ivect.load()
 
-dict["vector"] = vect
-dict["bow"] = vectbow
-dict["sentok"] = dlist
+xdict["vector"] = vect
+xdict["bow"] = vectbow
+xdict["sentok"] = dlist
 
 # dump json
-json.dump(dict, open("data.json", "w"))
+json.dump(xdict, open("data.json", "w"))
 
 # load json
 d = json.load(open("data.json"))
