@@ -7,6 +7,7 @@ dlist = []
 xlist = []
 ylist = []
 xdict = {}
+ydict = {}
 vectbow = []
 
 with open("data.txt", "r") as file:
@@ -52,9 +53,12 @@ for i in dlist:
     for j in i:
         count += 1
         if vect[dlist.index(i)][count - 1] != 0:
-            ylist.append((j, vect[dlist.index(i)][count - 1]))
+            ydict[j] = vect[dlist.index(i)][count - 1]
 
-print("tf-idf\n", ylist)
+listd1 = list(ydict.items())
+listd1.sort(key = lambda k: k[1])
+for i in listd1:
+    print(i[0], "-", i[1])
 
 
 def main():
