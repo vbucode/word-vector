@@ -63,13 +63,15 @@ def main():
     countw = 0
     flag = 0
     for i in vectsent2:
-        for j in i:
-            countw += 1
-            if j == inp and flag == 0:
-                print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
-                flag = 1
-            if countw * len(vect2) == len(vectbow2):
-                print("not in documents")
+        if flag == 0:
+            for j in i:
+                countw += 1
+                if j == inp:
+                    print("{}:{}".format(j, vect2[vectsent2.index(i)][countw -1]))
+                    flag = 1
+                    break
+        if countw == len(vectbow2):
+            print("not in documents")
 
 while True:
     main()
