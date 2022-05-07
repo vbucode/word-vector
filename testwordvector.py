@@ -4,8 +4,6 @@ from words import Words
 from wordvector import WordVector
 
 dlist = []
-xlist = []
-ylist = []
 xdict = {}
 ydict = {}
 vectbow = []
