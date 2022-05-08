@@ -73,7 +73,7 @@ def main():
                     flag = 1
                     break
         if countw == len(vectbow2):
-            print("not in documents")
+            print("the word does not exist in the documents")
 
 while True:
     main()
