@@ -44,10 +44,12 @@ class WordVector:
                     countw += 1
                     klist[self.getlist.index(i)][countw - 1] = 1
 
-        else self.tfidf == "custom":
+        elif self.tfidf == "custom":
             for i in self.getlist:
                 for j in i:
                     countw += 1
-                    if j in lcustomlist:
-                        klist[self.getlist.index(i)][countw - 1] = self.rcustomlist[self.getlist.index(i)]
+                    for k in self.lcustomlist:
+                        if k == j:
+                            klist[self.getlist.index(i)][countw - 1] = self.rcustomlist[self.lcustomlist.index(k)]
+        
         return klist
