@@ -48,8 +48,13 @@ class WordVector:
             for i in self.getlist:
                 for j in i:
                     countw += 1
+                    c = 0
                     for k in self.lcustomlist:
+                        c += 1
                         if k == j:
                             klist[self.getlist.index(i)][countw - 1] = self.rcustomlist[self.lcustomlist.index(k)]
+                            break
+                    if c == len(self.lcustomlist):
+                        klist[self.getlist.index(i)][countw - 1] = 1 
         
         return klist
