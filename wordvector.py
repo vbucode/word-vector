@@ -11,8 +11,11 @@ class WordVector:
         c = 0
         countw = 0
         for i in self.getlist:
-            for j in i:
-                instv.append(j)
+            if type(i) == list:
+                for j in i:
+                    instv.append(j)
+            else:
+                instv.append(i)
         for i in range(len(self.getlist)):
             klist.append([0]*len(instv))
         if self.tfidf == "tf":
