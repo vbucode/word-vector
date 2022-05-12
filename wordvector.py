@@ -1,9 +1,10 @@
 import math
 
 class WordVector:
-    def __init__(self, getlist, customlist = None, tfidf = "01"):
+    def __init__(self, getlist, lcustomlist = None, rcustomlist = None, tfidf = "01"):
         self.getlist = getlist
-        self.customlist = customlist
+        self.lcustomlist = lcustomlist
+        self.rcustomlist = rcustomlist
         self.tfidf = tfidf
     def load(self):
         klist = []
@@ -11,11 +12,8 @@ class WordVector:
         c = 0
         countw = 0
         for i in self.getlist:
-            if type(i) == list:
-                for j in i:
-                    instv.append(j)
-            else:
-                instv.append(i)
+            for j in i:
+                instv.append(j)
         for i in range(len(self.getlist)):
             klist.append([0]*len(instv))
         if self.tfidf == "tf":
@@ -50,5 +48,6 @@ class WordVector:
             for i in self.getlist:
                 for j in i:
                     countw += 1
-                    klist[self.getlist.index(i)][countw - 1] = self.customlist[self.getlist.index(i)]
+                    if j in lcustomlist:
+                        klist[self.getlist.index(i)][countw - 1] = self.rcustomlist[self.getlist.index(i)]
         return klist
