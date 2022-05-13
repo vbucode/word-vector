@@ -21,11 +21,6 @@ for i in sent:
     wl = w.load()
     dlist.append(wl)
 
-# bag of words
-for i in dlist:
-    for j in i:
-        vectbow.append(j)
-
 # vector with tf-idf
 ivect = WordVector(dlist, tfidf = "tf-idf")
 vect = ivect.load()
