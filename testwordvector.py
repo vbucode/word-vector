@@ -31,7 +31,6 @@ ivect = WordVector(dlist, tfidf = "tf-idf")
 vect = ivect.load()
 
 xdict["vector"] = vect
-xdict["bow"] = vectbow
 xdict["sentok"] = dlist
 
 # dump json
