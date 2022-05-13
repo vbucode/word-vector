@@ -6,7 +6,6 @@ from wordvector import WordVector
 dlist = []
 xdict = {}
 ydict = {}
-vectbow = []
 
 with open("data.txt", "r") as file:
     f = file.read()
