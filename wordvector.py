@@ -24,10 +24,10 @@ class WordVector:
                 for j in i:
                     countw += 1
                     c = instv.count(j)
-                    tlist.append(c / len(instv))
+                    tlist.append([c / len(instv)])
                 tlist.append([0] * (len(instv) - countw))
-                for i in tlist:
-                    tlist2.extend(i)
+                for k in tlist:
+                    tlist2.extend(k)
                 klist.append(tlist2)
 
         elif self.tfidf == "idf":
@@ -38,10 +38,10 @@ class WordVector:
                     tlist.append([0] * countw)
                 for j in i:
                     countw += 1
-                    tlist.append(math.log10(len(self.getlist)/sum([1.0 for i in self.getlist if j in i])))
+                    tlist.append([math.log10(len(self.getlist)/sum([1.0 for i in self.getlist if j in i]))])
                 tlist.append([0] * (len(instv) - countw))
-                for i in tlist:
-                    tlist2.extend(i)
+                for k in tlist:
+                    tlist2.extend(k)
                 klist.append(tlist2)
 
         elif self.tfidf == "tf-idf":
@@ -55,10 +55,10 @@ class WordVector:
                     c = instv.count(j)
                     vartf = c / len(instv)
                     varidf = math.log10(len(self.getlist)/sum([1.0 for i in self.getlist if j in i]))
-                    tlist.append(vartf * varidf)
+                    tlist.append([vartf * varidf])
                 tlist.append([0] * (len(instv) - countw))
-                for i in tlist:
-                    tlist2.extend(i)
+                for k in tlist:
+                    tlist2.extend(k)
                 klist.append(tlist2)
 
         elif self.tfidf == "01":
@@ -71,10 +71,9 @@ class WordVector:
                     countw += 1
                     tlist.append([1])
                 tlist.append([0] * (len(instv) - countw))
-                for i in tlist:
-                    tlist2.extend(i)
+                for k in tlist:
+                    tlist2.extend(k)
                 klist.append(tlist2)
-
 
         elif self.tfidf == "custom":
             for i in self.getlist:
@@ -88,13 +87,13 @@ class WordVector:
                     for k in self.lcustomlist:
                         c += 1
                         if k == j:
-                            klist.append(self.rcustomlist[self.lcustomlist.index(k)])
+                            tlist.append([self.rcustomlist[self.lcustomlist.index(k)]])
                             break
                     if c == len(self.lcustomlist):
-                        tlist.append(1)
+                        tlist.append([1])
                 tlist.append([0] * (len(instv) - countw))
-                for i in tlist:
-                    tlist2.extend(i)
+                for n in tlist:
+                    tlist2.extend(n)
                 klist.append(tlist2)
         
         return klist
