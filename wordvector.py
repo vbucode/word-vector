@@ -55,7 +55,7 @@ class WordVector:
                     c = instv.count(j)
                     vartf = c / len(instv)
                     varidf = math.log10(len(self.getlist)/sum([1.0 for i in self.getlist if j in i]))
-                    klist.append(vartf * varidf)
+                    tlist.append(vartf * varidf)
                 tlist.append([0] * (len(instv) - countw))
                 for i in tlist:
                     tlist2.extend(i)
@@ -91,7 +91,7 @@ class WordVector:
                             klist.append(self.rcustomlist[self.lcustomlist.index(k)])
                             break
                     if c == len(self.lcustomlist):
-                        klist.append(1)
+                        tlist.append(1)
                 tlist.append([0] * (len(instv) - countw))
                 for i in tlist:
                     tlist2.extend(i)
