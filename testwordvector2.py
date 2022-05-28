@@ -27,7 +27,7 @@ for i in sent:
 ivect = WordVector(dlist, *ner, tfidf = "custom")
 vect = ivect.load()
 
-# words without 0
+# words with custom
 count = 0
 for i in dlist:
     for j in i:
