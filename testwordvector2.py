@@ -5,7 +5,6 @@ from wordvector import WordVector
 import corpus
 
 dlist = []
-xdict = {}
 ydict = {}
 
 with open("data.txt", "r") as file:
