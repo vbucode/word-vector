@@ -7,7 +7,6 @@ import corpus
 dlist = []
 xdict = {}
 ydict = {}
-vectbow = []
 
 with open("data.txt", "r") as file:
     f = file.read()
