@@ -1,4 +1,3 @@
-import json
 from sentences import Sentences
 from words import Words
 from wordvector import WordVector
